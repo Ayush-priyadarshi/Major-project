@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-solid fa-compass"></i>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <!-- LEFT NAVIGATION -->
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+
+      <!-- ✅ CENTERED SEARCH FORM -->
+      <form action="/search" method="GET" class="d-flex mx-auto" style="width: 40%;">
+        <input 
+          class="form-control me-2" 
+          type="search" 
+          name="q" 
+          placeholder="Search listings..." 
+          aria-label="Search"
+        >
+        <button class="btn btn-outline-primary" type="submit">Search</button>
+      </form>
+
+      <!-- ✅ RIGHT NAVIGATION -->
+      <div class="navbar-nav ms-auto align-items-center gap-2">
+        <a 
+          class="nav-link px-3 py-2 border rounded-pill shadow-sm text-dark fw-semibold bg-light" 
+          href="/listings/new">
+          Airbnb your home
+        </a>
+
+        <% if (!currUser) { %>
+          <a class="nav-link" href="/signup"><b>Sign up</b></a>
+          <a class="nav-link" href="/login"><b>Log in</b></a>
+        <% } else { %>
+          <form action="/logout" method="POST" class="d-inline">
+            <button class="nav-link btn btn-link" type="submit" style="padding: 0; text-decoration: none;"><b>Log out</b></button>
+          </form>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
+
+

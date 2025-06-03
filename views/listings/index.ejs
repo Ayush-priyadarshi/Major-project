@@ -1,0 +1,127 @@
+<% layout("layouts/boilerplate") %>
+<%= success %>
+
+<!-- Horizontal filter bar with scroll -->
+<div class="container-fluid bg-white border-bottom py-2">
+  <div class="d-flex align-items-center flex-nowrap px-3" style="overflow-x: auto; white-space: nowrap;">
+    
+    <!-- Filter Icons -->
+    <% const filters = [
+      { icon: 'mountain-sun', label: 'Views' },
+      { icon: 'water', label: 'Lakefront' },
+      { icon: 'tree', label: 'Cabins' },
+      { icon: 'city', label: 'City' },
+      { icon: 'fire', label: 'Trending' },
+      { icon: 'campground', label: 'Camping' },
+      { icon: 'skiing', label: 'Skiing' },
+      { icon: 'sailboat', label: 'Boating' },
+      { icon: 'hiking', label: 'Hiking' },
+      { icon: 'bicycle', label: 'Cycling' },
+      { icon: 'wind', label: 'Windy' },
+      { icon: 'hot-tub-person', label: 'Hot Tub' },
+      { icon: 'snowflake', label: 'Winter' },
+      { icon: 'dog', label: 'Pet Friendly' }
+    ]; %>
+
+    <% filters.forEach(f => { %>
+      <div class="text-center mx-2 filter-item">
+        <i class="fa-solid fa-<%= f.icon %> fs-5 text-dark"></i>
+        <div class="filter-label"><%= f.label %></div>
+      </div>
+    <% }) %>
+
+    <!-- Toggle -->
+    <div class="Tax-toggle ms-3">
+      <div class="form-check form-switch m-0 d-flex align-items-center gap-2">
+        <input class="form-check-input" type="checkbox" id="switchCheckDefault">
+        <label class="form-check-label m-0" for="switchCheckDefault">Display Taxes</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Listings Section -->
+<div class="container my-4">
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2 g-4">
+    <% for (let listing of alllistings) { %>
+      <div class="col">
+        <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
+          <div class="card h-100 shadow-sm border-0">
+            <img src="<%= listing.image.url %>" class="card-img-top rounded-top" alt="image" style="height: 20rem; object-fit: cover;">
+            <div class="card-body">
+              <p class="card-text mb-1">
+                <strong><%= listing.title %></strong>
+              </p>
+              <p class="card-text text-muted mb-0">
+                &#8377; <%= listing.price ? listing.price.toLocaleString("en-IN") : "N/A" %>/night
+                <i class="Tax-info d-none">&nbsp;&nbsp;+18% GST</i>
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<!-- Styles -->
+<style>
+  .filter-item {
+    cursor: pointer;
+    user-select: none;
+    width: 60px;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .filter-item:hover {
+    color: #ff385c; /* Airbnb-style hover */
+  }
+
+  .filter-label {
+    font-size: 0.75rem;
+    margin-top: 4px;
+    color: #222;
+    white-space: normal;
+  }
+
+  .Tax-toggle {
+    border: 2px solid black;
+    border-radius: 2rem;
+    padding: 0.4rem 1rem;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+  }
+
+  .form-check-input {
+    width: 2.2rem;
+    height: 1.2rem;
+    cursor: pointer;
+    background-color: #ccc;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .form-check-input:checked {
+    background-color: #0d6efd;
+  }
+
+  .Tax-info {
+    font-size: 0.85rem;
+    color: #555;
+  }
+</style>
+
+<!-- Script -->
+<script>
+  const taxSwitch = document.getElementById("switchCheckDefault");
+  const taxInfos = document.getElementsByClassName("Tax-info");
+
+  taxSwitch.addEventListener("change", () => {
+    for (let info of taxInfos) {
+      info.classList.toggle("d-none");
+    }
+  });
+</script>
+
