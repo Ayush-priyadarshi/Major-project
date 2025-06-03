@@ -91,9 +91,16 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.get("/", (req, res) => {
-  res.send("hi");
+app.get('/', async (req, res) => {
+  try {
+    const alllistings = await Listing.find({});
+    res.render('listings/index', { alllistings });
+  } catch (e) {
+    console.log(e);
+    res.send("Error loading listings");
+  }
 });
+
 
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
