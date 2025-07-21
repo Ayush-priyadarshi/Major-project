@@ -39,6 +39,9 @@ router
 // EDIT route – render edit form for a specific listing
 router.get("/:id/edit", isLoggedIn, isOwner, wrapAsync(listingController.renderEditForm));
 
+// LIKE route – handle like/unlike functionality
+router.post("/like", isLoggedIn, wrapAsync(listingController.toggleLike));
+
 module.exports = router;
 
 

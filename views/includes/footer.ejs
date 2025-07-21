@@ -1,19 +1,152 @@
-<footer>
-    <div class="f-info">
-        <div class="f-info-social">
-            <i class="fa-brands fa-facebook-f"></i>
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-linkedin"></i>
+<footer class="bg-dark text-white py-5 mt-auto">
+  <div class="container">
+    <div class="row g-4">
+      <!-- Company Info -->
+      <div class="col-lg-4">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <i class="fa-solid fa-compass text-primary fs-3"></i>
+          <span class="text-gradient fw-bold fs-4">Wonderlust</span>
         </div>
-
-        <div class="f-info-brands">&copy:Wonderlust private limited</div>
-        <div class="f-info-links">
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
-
+        <p class="text-muted mb-3">Discover amazing places and unique experiences around the world. Your journey starts here.</p>
+        <div class="d-flex gap-3">
+          <a href="#" class="social-link">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-link">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-link">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="social-link">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
         </div>
+      </div>
 
+      <!-- Quick Links -->
+      <div class="col-lg-2 col-md-6">
+        <h6 class="fw-bold mb-3">Explore</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="/listings" class="footer-link">All Listings</a></li>
+          <li class="mb-2"><a href="/listings/new" class="footer-link">List Your Place</a></li>
+          <li class="mb-2"><a href="#" class="footer-link">Experiences</a></li>
+          <li class="mb-2"><a href="#" class="footer-link">Destinations</a></li>
+        </ul>
+      </div>
 
+      <!-- Support -->
+      <div class="col-lg-2 col-md-6">
+        <h6 class="fw-bold mb-3">Support</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="#" class="footer-link">Help Center</a></li>
+          <li class="mb-2"><a href="#" class="footer-link">Contact Us</a></li>
+          <li class="mb-2"><a href="#" class="footer-link">Safety</a></li>
+          <li class="mb-2"><a href="#" class="footer-link">Trust & Safety</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div class="col-lg-2 col-md-6">
+        <h6 class="fw-bold mb-3">Legal</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="/privacy" class="footer-link">Privacy Policy</a></li>
+          <li class="mb-2"><a href="/terms" class="footer-link">Terms of Service</a></li>
+          <li class="mb-2"><a href="#" class="footer-link">Cookie Policy</a></li>
+          <li class="mb-2"><a href="#" class="footer-link">Accessibility</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="col-lg-2 col-md-6">
+        <h6 class="fw-bold mb-3">Stay Updated</h6>
+        <p class="text-muted small mb-3">Get the latest travel inspiration and deals.</p>
+        <div class="input-group">
+          <input type="email" class="form-control form-control-sm" placeholder="Email">
+          <button class="btn btn-primary btn-sm">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
     </div>
-    
+
+    <!-- Bottom Bar -->
+    <hr class="my-4 border-secondary">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <p class="text-muted mb-0 small">
+          &copy; 2024 Wonderlust Private Limited. All rights reserved.
+        </p>
+      </div>
+      <div class="col-md-6 text-md-end">
+        <div class="d-flex gap-3 justify-content-md-end">
+          <a href="#" class="footer-link small">English (US)</a>
+          <a href="#" class="footer-link small">₹ INR</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>
+
+<style>
+.footer-link {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.footer-link:hover {
+  color: #3b82f6;
+  transform: translateX(4px);
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: #3b82f6;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.form-control {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.form-control::placeholder {
+  color: #94a3b8;
+}
+
+.form-control:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  color: white;
+}
+
+.btn-sm {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .text-md-end {
+    text-align: left !important;
+    margin-top: 1rem;
+  }
+}
+</style>

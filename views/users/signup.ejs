@@ -1,37 +1,288 @@
 <% layout("layouts/boilerplate") %>
 
-<div class="row mt-3">
-  <h1 class="col-6 offset-3">Signup for Wanderlust</h1>
-  <div class="col-8 offset-2">
-    <form action="/signup" method="POST" class="needs-validation" novalidate>
-      
-      <!-- Username -->
-      <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-        <input type="text" name="username" id="username" class="form-control" required>
-        <div class="valid-feedback">Looks good!</div>
-        <div class="invalid-feedback">Please enter a valid username.</div>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <!-- Signup Card -->
+      <div class="card border-0 shadow-lg">
+        <div class="card-body p-5">
+          <!-- Header -->
+          <div class="text-center mb-5">
+            <div class="d-flex align-items-center justify-content-center gap-2 mb-3">
+              <i class="fa-solid fa-compass text-primary fs-1"></i>
+              <span class="text-gradient fw-bold fs-2">Wonderlust</span>
+            </div>
+            <h2 class="fw-bold mb-2">Join the Adventure</h2>
+            <p class="text-muted">Create your account and start exploring amazing places</p>
+          </div>
+
+          <!-- Signup Form -->
+          <form action="/signup" method="POST" class="needs-validation" novalidate>
+            <!-- Username -->
+            <div class="mb-4">
+              <label for="username" class="form-label fw-semibold">
+                <i class="fas fa-user me-2 text-primary"></i>Username
+              </label>
+              <input 
+                type="text" 
+                name="username" 
+                id="username" 
+                class="form-control form-control-lg" 
+                placeholder="Choose a unique username"
+                required
+              >
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please enter a valid username.</div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-4">
+              <label for="email" class="form-label fw-semibold">
+                <i class="fas fa-envelope me-2 text-primary"></i>Email Address
+              </label>
+              <input 
+                type="email" 
+                name="email" 
+                id="email" 
+                class="form-control form-control-lg" 
+                placeholder="Enter your email address"
+                required
+              >
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please enter a valid email address.</div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-4">
+              <label for="password" class="form-label fw-semibold">
+                <i class="fas fa-lock me-2 text-primary"></i>Password
+              </label>
+              <div class="input-group">
+                <input 
+                  type="password" 
+                  name="password" 
+                  id="password" 
+                  class="form-control form-control-lg" 
+                  placeholder="Create a strong password"
+                  required
+                >
+                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please enter a password.</div>
+            </div>
+
+            <!-- Terms and Conditions -->
+            <div class="mb-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                <label class="form-check-label text-muted" for="termsCheck">
+                  I agree to the <a href="#" class="text-decoration-none text-primary">Terms of Service</a> and 
+                  <a href="#" class="text-decoration-none text-primary">Privacy Policy</a>
+                </label>
+                <div class="invalid-feedback">You must agree before submitting.</div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary btn-lg w-100 mb-4">
+              <i class="fas fa-user-plus me-2"></i>Create Account
+            </button>
+
+            <!-- Divider -->
+            <div class="text-center mb-4">
+              <span class="text-muted bg-white px-3">or sign up with</span>
+            </div>
+
+            <!-- Social Signup -->
+            <div class="row g-3 mb-4">
+              <div class="col-6">
+                <button type="button" class="btn btn-outline-secondary w-100">
+                  <i class="fab fa-google me-2"></i>Google
+                </button>
+              </div>
+              <div class="col-6">
+                <button type="button" class="btn btn-outline-secondary w-100">
+                  <i class="fab fa-facebook-f me-2"></i>Facebook
+                </button>
+              </div>
+            </div>
+
+            <!-- Login Link -->
+            <div class="text-center">
+              <p class="text-muted mb-0">
+                Already have an account? 
+                <a href="/login" class="text-decoration-none fw-semibold text-primary">Sign in</a>
+              </p>
+            </div>
+          </form>
+        </div>
       </div>
 
-      <!-- Email -->
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" name="email" id="email" class="form-control" required>
-        <div class="valid-feedback">Looks good!</div>
-        <div class="invalid-feedback">Please enter a valid email.</div>
+      <!-- Benefits -->
+      <div class="row g-4 mt-5">
+        <div class="col-md-4 text-center">
+          <div class="benefit-card p-3">
+            <i class="fas fa-search text-primary fs-2 mb-2"></i>
+            <h6 class="fw-semibold">Discover Places</h6>
+            <p class="text-muted small">Find unique accommodations worldwide</p>
+          </div>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="benefit-card p-3">
+            <i class="fas fa-star text-primary fs-2 mb-2"></i>
+            <h6 class="fw-semibold">Write Reviews</h6>
+            <p class="text-muted small">Share your experiences with others</p>
+          </div>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="benefit-card p-3">
+            <i class="fas fa-home text-primary fs-2 mb-2"></i>
+            <h6 class="fw-semibold">List Your Place</h6>
+            <p class="text-muted small">Earn money by hosting travelers</p>
+          </div>
+        </div>
       </div>
-
-      <!-- Password -->
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" name="password" id="password" class="form-control" required>
-        <div class="valid-feedback">Looks good!</div>
-        <div class="invalid-feedback">Please enter a password.</div>
-      </div>
-
-      <!-- Submit Button -->
-      <button type="submit" class="btn btn-success">Sign Up</button>
-
-    </form>
+    </div>
   </div>
 </div>
+
+<style>
+.card {
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.form-control {
+  border-radius: 0.75rem;
+  border: 2px solid #e2e8f0;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-control-lg {
+  font-size: 1rem;
+}
+
+.btn {
+  border-radius: 0.75rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.btn-lg {
+  padding: 0.875rem 1.5rem;
+  font-size: 1.1rem;
+}
+
+.benefit-card {
+  background: #f8fafc;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.input-group .btn {
+  border-radius: 0 0.75rem 0.75rem 0;
+  border-left: none;
+}
+
+.input-group .form-control {
+  border-right: none;
+}
+
+.input-group .form-control:focus + .btn {
+  border-color: #3b82f6;
+}
+
+.form-check-input:checked {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+@media (max-width: 768px) {
+  .card-body {
+    padding: 2rem !important;
+  }
+}
+</style>
+
+<script>
+// Password toggle
+document.getElementById('togglePassword').addEventListener('click', function() {
+  const password = document.getElementById('password');
+  const icon = this.querySelector('i');
+  
+  if (password.type === 'password') {
+    password.type = 'text';
+    icon.classList.remove('fa-eye');
+    icon.classList.add('fa-eye-slash');
+  } else {
+    password.type = 'password';
+    icon.classList.remove('fa-eye-slash');
+    icon.classList.add('fa-eye');
+  }
+});
+
+// Form validation
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    var forms = document.getElementsByClassName('needs-validation');
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+
+// Password strength indicator
+document.getElementById('password').addEventListener('input', function() {
+  const password = this.value;
+  const strength = getPasswordStrength(password);
+  updatePasswordStrengthIndicator(strength);
+});
+
+function getPasswordStrength(password) {
+  let score = 0;
+  
+  if (password.length >= 8) score++;
+  if (/[a-z]/.test(password)) score++;
+  if (/[A-Z]/.test(password)) score++;
+  if (/[0-9]/.test(password)) score++;
+  if (/[^A-Za-z0-9]/.test(password)) score++;
+  
+  if (score <= 2) return 'weak';
+  if (score <= 3) return 'medium';
+  return 'strong';
+}
+
+function updatePasswordStrengthIndicator(strength) {
+  const feedback = document.querySelector('#password + .invalid-feedback');
+  if (feedback) {
+    feedback.textContent = `Password strength: ${strength}`;
+    feedback.className = `form-text text-${strength === 'weak' ? 'danger' : strength === 'medium' ? 'warning' : 'success'}`;
+  }
+}
+</script>

@@ -1,29 +1,236 @@
 <% layout("layouts/boilerplate") %>
 
-<div class="row mt-3">
-  <h1 class="col-6 offset-3">Login to Wanderlust</h1>
-  <div class="col-8 offset-2">
-    <form action="/login" method="POST" class="needs-validation" novalidate>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <!-- Login Card -->
+      <div class="card border-0 shadow-lg">
+        <div class="card-body p-5">
+          <!-- Header -->
+          <div class="text-center mb-5">
+            <div class="d-flex align-items-center justify-content-center gap-2 mb-3">
+              <i class="fa-solid fa-compass text-primary fs-1"></i>
+              <span class="text-gradient fw-bold fs-2">Wonderlust</span>
+            </div>
+            <h2 class="fw-bold mb-2">Welcome Back</h2>
+            <p class="text-muted">Sign in to your account to continue your journey</p>
+          </div>
 
-      <!-- Username -->
-      <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-        <input type="text" name="username" id="username" class="form-control" required>
-        <div class="valid-feedback">Looks good!</div>
-        <div class="invalid-feedback">Please enter your username.</div>
+          <!-- Login Form -->
+          <form action="/login" method="POST" class="needs-validation" novalidate>
+            <!-- Username -->
+            <div class="mb-4">
+              <label for="username" class="form-label fw-semibold">
+                <i class="fas fa-user me-2 text-primary"></i>Username
+              </label>
+              <input 
+                type="text" 
+                name="username" 
+                id="username" 
+                class="form-control form-control-lg" 
+                placeholder="Enter your username"
+                required
+              >
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please enter your username.</div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-4">
+              <label for="password" class="form-label fw-semibold">
+                <i class="fas fa-lock me-2 text-primary"></i>Password
+              </label>
+              <div class="input-group">
+                <input 
+                  type="password" 
+                  name="password" 
+                  id="password" 
+                  class="form-control form-control-lg" 
+                  placeholder="Enter your password"
+                  required
+                >
+                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please enter your password.</div>
+            </div>
+
+            <!-- Remember Me & Forgot Password -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="rememberMe">
+                <label class="form-check-label text-muted" for="rememberMe">
+                  Remember me
+                </label>
+              </div>
+              <a href="#" class="text-decoration-none text-primary fw-semibold">Forgot password?</a>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary btn-lg w-100 mb-4">
+              <i class="fas fa-sign-in-alt me-2"></i>Sign In
+            </button>
+
+            <!-- Divider -->
+            <div class="text-center mb-4">
+              <span class="text-muted bg-white px-3">or continue with</span>
+            </div>
+
+            <!-- Social Login -->
+            <div class="row g-3 mb-4">
+              <div class="col-6">
+                <button type="button" class="btn btn-outline-secondary w-100">
+                  <i class="fab fa-google me-2"></i>Google
+                </button>
+              </div>
+              <div class="col-6">
+                <button type="button" class="btn btn-outline-secondary w-100">
+                  <i class="fab fa-facebook-f me-2"></i>Facebook
+                </button>
+              </div>
+            </div>
+
+            <!-- Sign Up Link -->
+            <div class="text-center">
+              <p class="text-muted mb-0">
+                Don't have an account? 
+                <a href="/signup" class="text-decoration-none fw-semibold text-primary">Sign up</a>
+              </p>
+            </div>
+          </form>
+        </div>
       </div>
 
-      <!-- Password -->
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" name="password" id="password" class="form-control" required>
-        <div class="valid-feedback">Looks good!</div>
-        <div class="invalid-feedback">Please enter your password.</div>
+      <!-- Features -->
+      <div class="row g-4 mt-5">
+        <div class="col-md-4 text-center">
+          <div class="feature-card p-3">
+            <i class="fas fa-shield-alt text-primary fs-2 mb-2"></i>
+            <h6 class="fw-semibold">Secure</h6>
+            <p class="text-muted small">Your data is protected with industry-standard encryption</p>
+          </div>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="feature-card p-3">
+            <i class="fas fa-globe text-primary fs-2 mb-2"></i>
+            <h6 class="fw-semibold">Global</h6>
+            <p class="text-muted small">Access listings from around the world</p>
+          </div>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="feature-card p-3">
+            <i class="fas fa-clock text-primary fs-2 mb-2"></i>
+            <h6 class="fw-semibold">24/7 Support</h6>
+            <p class="text-muted small">Get help whenever you need it</p>
+          </div>
+        </div>
       </div>
-
-      <!-- Submit Button -->
-      <button type="submit" class="btn btn-primary">Login</button>
-
-    </form>
+    </div>
   </div>
 </div>
+
+<style>
+.card {
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.form-control {
+  border-radius: 0.75rem;
+  border: 2px solid #e2e8f0;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-control-lg {
+  font-size: 1rem;
+}
+
+.btn {
+  border-radius: 0.75rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.btn-lg {
+  padding: 0.875rem 1.5rem;
+  font-size: 1.1rem;
+}
+
+.feature-card {
+  background: #f8fafc;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.input-group .btn {
+  border-radius: 0 0.75rem 0.75rem 0;
+  border-left: none;
+}
+
+.input-group .form-control {
+  border-right: none;
+}
+
+.input-group .form-control:focus + .btn {
+  border-color: #3b82f6;
+}
+
+@media (max-width: 768px) {
+  .card-body {
+    padding: 2rem !important;
+  }
+}
+</style>
+
+<script>
+// Password toggle
+document.getElementById('togglePassword').addEventListener('click', function() {
+  const password = document.getElementById('password');
+  const icon = this.querySelector('i');
+  
+  if (password.type === 'password') {
+    password.type = 'text';
+    icon.classList.remove('fa-eye');
+    icon.classList.add('fa-eye-slash');
+  } else {
+    password.type = 'password';
+    icon.classList.remove('fa-eye-slash');
+    icon.classList.add('fa-eye');
+  }
+});
+
+// Form validation
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    var forms = document.getElementsByClassName('needs-validation');
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>

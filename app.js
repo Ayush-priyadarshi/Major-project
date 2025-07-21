@@ -1,4 +1,4 @@
-if(process.env.NODE_ENV!="prodeuction"){
+if(process.env.NODE_ENV!="production"){
   require('dotenv').config()
   
 }
@@ -27,17 +27,33 @@ const userRouter = require("./routes/user.js");
 
 const wrapAsync = require("./util/wrapAsync.js");
 const ExpressError = require("./util/ExpressError.js");
-const dburl=process.env.ATLASDB_URL;
+const dburl = process.env.ATLASDB_URL;
+
+// Check if environment variables are loaded
+if (!dburl) {
+  console.error("❌ ATLASDB_URL is not defined in environment variables");
+  console.error("Please check your .env file");
+  process.exit(1);
+}
+
+if (!process.env.SECRET) {
+  console.error("❌ SECRET is not defined in environment variables");
+  console.error("Please check your .env file");
+  process.exit(1);
+}
 
 // Connect to MongoDB
 async function main() {
-  await mongoose.connect(dburl);
+  try {
+    await mongoose.connect(dburl);
+    console.log("✅ Connected to MongoDB Atlas");
+  } catch (err) {
+    console.error("❌ Failed to connect to MongoDB:", err.message);
+    process.exit(1);
+  }
 }
-main().then(() => {
-  console.log("Connected to DB");
-}).catch((err) => {
-  console.log(err);
-});
+
+main();
 
 // Middleware and app setup
 app.use(express.static(path.join(__dirname, '/public')));
@@ -47,16 +63,19 @@ app.use(methodoverride("_method"));
 app.engine('ejs', ejsmate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+
+// Create MongoDB session store
 const store = MongoStore.create({
   mongoUrl: dburl,
   crypto: {
-    secret:process.env.SECRET,
+    secret: process.env.SECRET,
   },
-  touchAfter:24*3600,
-})
-store.on("error",()=>{
-  console.log("error in the session store",err);
-})
+  touchAfter: 24 * 3600,
+});
+
+store.on("error", (err) => {
+  console.error("❌ Session store error:", err);
+});
 // Session options
 const sessionoption = {
   store,
@@ -91,15 +110,6 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.get('/', async (req, res) => {
-  try {
-    const alllistings = await Listing.find({});
-    res.render('listings/index', { alllistings });
-  } catch (e) {
-    console.log(e);
-    res.send("Error loading listings");
-  }
-});
 
 
 app.use("/listings", listingsRouter);

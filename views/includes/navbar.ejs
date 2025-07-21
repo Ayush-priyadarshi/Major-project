@@ -1,50 +1,161 @@
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/listings">
+<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top w-100">
+  <div class="container-fluid px-4">
+    <!-- Brand -->
+    <a class="navbar-brand d-flex align-items-center gap-2" href="/">
       <i class="fa-solid fa-compass"></i>
+      <span class="text-gradient fw-bold">Wonderlust</span>
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <!-- LEFT NAVIGATION -->
-      <div class="navbar-nav">
-        <a class="nav-link" href="/listings">Explore</a>
+      <!-- Left Navigation -->
+      <div class="navbar-nav me-auto">
+        <a class="nav-link" href="/listings">
+          <i class="fas fa-search me-1"></i>
+          Explore
+        </a>
       </div>
 
-      <!-- ✅ CENTERED SEARCH FORM -->
-      <form action="/search" method="GET" class="d-flex mx-auto" style="width: 40%;">
-        <input 
-          class="form-control me-2" 
-          type="search" 
-          name="q" 
-          placeholder="Search listings..." 
-          aria-label="Search"
-        >
-        <button class="btn btn-outline-primary" type="submit">Search</button>
+      <!-- Centered Search Form -->
+      <form action="/search" method="GET" class="d-flex mx-auto" style="width: 50%; max-width: 600px;">
+        <div class="input-group">
+          <span class="input-group-text bg-white border-end-0">
+            <i class="fas fa-search text-muted"></i>
+          </span>
+          <input 
+            class="form-control border-start-0 ps-0" 
+            type="search" 
+            name="q" 
+            placeholder="Search amazing places..." 
+            aria-label="Search"
+            style="min-width: 300px;"
+          >
+          <button class="btn btn-primary px-4" type="submit">
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
       </form>
 
-      <!-- ✅ RIGHT NAVIGATION -->
-      <div class="navbar-nav ms-auto align-items-center gap-2">
+      <!-- Right Navigation -->
+      <div class="navbar-nav ms-auto align-items-center gap-3">
+        <!-- Dark Mode Toggle Button -->
+        <button id="darkModeToggle" class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center me-2" title="Toggle dark mode" style="width: 40px; height: 40px;">
+          <i id="darkModeIcon" class="fas fa-moon"></i>
+        </button>
         <a 
-          class="nav-link px-3 py-2 border rounded-pill shadow-sm text-dark fw-semibold bg-light" 
-          href="/listings/new">
-          Airbnb your home
+          class="nav-link px-4 py-2 rounded-pill shadow-sm text-dark fw-semibold bg-light border" 
+          href="/listings/new"
+          style="transition: all 0.3s ease;"
+        >
+          <i class="fas fa-plus me-2"></i>
+          List your place
         </a>
 
         <% if (!currUser) { %>
-          <a class="nav-link" href="/signup"><b>Sign up</b></a>
-          <a class="nav-link" href="/login"><b>Log in</b></a>
+          <div class="d-flex gap-2">
+            <a class="nav-link fw-semibold" href="/signup">
+              <i class="fas fa-user-plus me-1"></i>
+              Sign up
+            </a>
+            <a class="btn btn-outline-primary btn-sm" href="/login">
+              <i class="fas fa-sign-in-alt me-1"></i>
+              Log in
+            </a>
+          </div>
         <% } else { %>
-          <form action="/logout" method="POST" class="d-inline">
-            <button class="nav-link btn btn-link" type="submit" style="padding: 0; text-decoration: none;"><b>Log out</b></button>
-          </form>
+          <div class="dropdown">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user-circle me-1"></i>
+              <%= currUser.username %>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0" aria-labelledby="userDropdown">
+              <li><a class="dropdown-item" href="/profile"><i class="fas fa-user me-2"></i>Profile</a></li>
+              <li><a class="dropdown-item" href="/bookings"><i class="fas fa-calendar me-2"></i>My Bookings</a></li>
+              <li><a class="dropdown-item" href="/listings/new"><i class="fas fa-plus me-2"></i>Add Listing</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <form action="/logout" method="POST" class="d-inline">
+                  <button class="dropdown-item text-danger" type="submit">
+                    <i class="fas fa-sign-out-alt me-2"></i>Log out
+                  </button>
+                </form>
+              </li>
+            </ul>
+          </div>
         <% } %>
       </div>
     </div>
   </div>
 </nav>
+
+<style>
+.navbar {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+}
+
+.nav-link {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.input-group-text {
+  border-color: var(--gray-200);
+}
+
+.form-control:focus + .input-group-text {
+  border-color: var(--primary-color);
+}
+
+.dropdown-menu {
+  border-radius: var(--radius-lg);
+  padding: 0.5rem 0;
+}
+
+.dropdown-item {
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: var(--gray-100);
+  transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+  .navbar-nav {
+    margin: 1rem 0;
+  }
+  
+  form {
+    width: 100% !important;
+    margin: 1rem 0;
+  }
+}
+</style>
 
 

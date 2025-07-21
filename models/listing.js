@@ -28,7 +28,12 @@ const listingSchema = new Schema({
   owner: { // Who created the listing
     type: Schema.Types.ObjectId,
     ref: "User", // Refers to the "User" model
-  }
+  },
+  
+  likes: [{ // Array of user IDs who liked this listing
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  }]
 });
 
 // Export the model
